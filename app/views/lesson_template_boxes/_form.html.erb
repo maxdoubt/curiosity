@@ -1,0 +1,41 @@
+<%= form_for(@lesson_template_box) do |f| %>
+  <% if @lesson_template_box.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lesson_template_box.errors.count, "error") %> prohibited this lesson_template_box from being saved:</h2>
+
+      <ul>
+      <% @lesson_template_box.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :lesson_template_id %><br>
+    <%= f.number_field :lesson_template_id %>
+  </div>
+  <div class="field">
+    <%= f.label :lesson_entryset_id %><br>
+    <%= f.number_field :lesson_entryset_id %>
+  </div>
+  <div class="field">
+    <%= f.label :row %><br>
+    <%= f.number_field :row %>
+  </div>
+  <div class="field">
+    <%= f.label :col %><br>
+    <%= f.number_field :col %>
+  </div>
+  <div class="field">
+    <%= f.label :rowspan %><br>
+    <%= f.number_field :rowspan %>
+  </div>
+  <div class="field">
+    <%= f.label :colspan %><br>
+    <%= f.number_field :colspan %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

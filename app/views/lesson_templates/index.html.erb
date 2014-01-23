@@ -1,0 +1,33 @@
+<h1>Listing lesson_templates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Rows</th>
+      <th>Cols</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lesson_templates.each do |lesson_template| %>
+      <tr>
+        <td><%= lesson_template.name %></td>
+        <td><%= lesson_template.description %></td>
+        <td><%= lesson_template.rows %></td>
+        <td><%= lesson_template.cols %></td>
+        <td><%= link_to 'Show', lesson_template %></td>
+        <td><%= link_to 'Edit', edit_lesson_template_path(lesson_template) %></td>
+        <td><%= link_to 'Destroy', lesson_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lesson template', new_lesson_template_path %>

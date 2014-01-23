@@ -1,0 +1,19 @@
+// Place all the styles related to the lesson_templates controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.template_row {
+	border: 0px solid black;
+	height: 50px;
+	margin: 0px 0px 0px 0px;
+	width: 800px;
+}
+
+.template_col {
+	border: 1px dashed grey;
+	height: 46px;
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+	float: left;
+}

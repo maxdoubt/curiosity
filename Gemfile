@@ -33,8 +33,9 @@ group :doc do
 end
 
 gem 'devise', '~> 3.2.1'
-gem 'devise_invitable' '~> 1.3.1'
+gem 'devise_invitable'
 gem 'seed_dump', '~> 2.0.0'
+gem 'awesome_nested_set'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

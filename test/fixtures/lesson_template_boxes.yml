@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  lesson_template_id: 1
+  lesson_entryset_id: 1
+  row: 1
+  col: 1
+  rowspan: 1
+  colspan: 1
+
+two:
+  lesson_template_id: 1
+  lesson_entryset_id: 1
+  row: 1
+  col: 1
+  rowspan: 1
+  colspan: 1

@@ -1,0 +1,39 @@
+<h1>Listing lesson_entrysets</h1>
+
+<table>
+  <thead>
+    <tr>
+	  <th>ID</th>
+      <th>Name</th>
+      <th>Parent</th>
+      <th>Lft</th>
+      <th>Rgt</th>
+      <th>Depth</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lesson_entrysets.each do |lesson_entryset| %>
+      <tr>
+		<td><%= lesson_entryset.id %></td>
+        <td><%= lesson_entryset.name %></td>
+        <td><%= lesson_entryset.parent_id %></td>
+        <td><%= lesson_entryset.lft %></td>
+        <td><%= lesson_entryset.rgt %></td>
+        <td><%= lesson_entryset.depth %></td>
+        <td><%= link_to 'Show', lesson_entryset %></td>
+        <td><%= link_to 'Edit', edit_lesson_entryset_path(lesson_entryset) %></td>
+        <td><%= link_to 'Destroy', lesson_entryset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lesson entryset', new_lesson_entryset_path %>
+
+<%= render :partial => 'index', :object => @lesson_entrysets %>

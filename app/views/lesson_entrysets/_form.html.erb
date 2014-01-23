@@ -1,0 +1,26 @@
+<%= form_for(@lesson_entryset) do |f| %>
+  <% if @lesson_entryset.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lesson_entryset.errors.count, "error") %> prohibited this lesson_entryset from being saved:</h2>
+
+      <ul>
+      <% @lesson_entryset.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_area :name %>
+  </div>
+
+  <div class="field">
+    <%= f.select :parent_id, nested_set_options(LessonEntryset, @lesson_entryset) {|i| "#{'–' * i.level} #{i.name}" } %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

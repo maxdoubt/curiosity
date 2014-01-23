@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @lesson_entryset.name %>
+</p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @lesson_entryset.parent_id %>
+</p>
+
+<p>
+  <strong>Lft:</strong>
+  <%= @lesson_entryset.lft %>
+</p>
+
+<p>
+  <strong>Rgt:</strong>
+  <%= @lesson_entryset.rgt %>
+</p>
+
+<p>
+  <strong>Depth:</strong>
+  <%= @lesson_entryset.depth %>
+</p>
+
+<%= link_to 'Edit', edit_lesson_entryset_path(@lesson_entryset) %> |
+<%= link_to 'Back', lesson_entrysets_path %>

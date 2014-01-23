@@ -1,4 +1,10 @@
 Curriositree::Application.routes.draw do
+  resources :lesson_template_boxes
+
+  resources :lesson_templates
+
+  resources :lesson_entrysets
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

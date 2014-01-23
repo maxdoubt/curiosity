@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lesson template:</strong>
+  <%= @lesson_template_box.lesson_template_id %>
+</p>
+
+<p>
+  <strong>Lesson entryset:</strong>
+  <%= @lesson_template_box.lesson_entryset_id %>
+</p>
+
+<p>
+  <strong>Row:</strong>
+  <%= @lesson_template_box.row %>
+</p>
+
+<p>
+  <strong>Col:</strong>
+  <%= @lesson_template_box.col %>
+</p>
+
+<p>
+  <strong>Rowspan:</strong>
+  <%= @lesson_template_box.rowspan %>
+</p>
+
+<p>
+  <strong>Colspan:</strong>
+  <%= @lesson_template_box.colspan %>
+</p>
+
+<%= link_to 'Edit', edit_lesson_template_box_path(@lesson_template_box) %> |
+<%= link_to 'Back', lesson_template_boxes_path %>

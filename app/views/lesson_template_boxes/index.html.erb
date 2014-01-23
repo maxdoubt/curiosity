@@ -1,0 +1,37 @@
+<h1>Listing lesson_template_boxes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lesson template</th>
+      <th>Lesson entryset</th>
+      <th>Row</th>
+      <th>Col</th>
+      <th>Rowspan</th>
+      <th>Colspan</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lesson_template_boxes.each do |lesson_template_box| %>
+      <tr>
+        <td><%= lesson_template_box.lesson_template_id %></td>
+        <td><%= lesson_template_box.lesson_entryset_id %></td>
+        <td><%= lesson_template_box.row %></td>
+        <td><%= lesson_template_box.col %></td>
+        <td><%= lesson_template_box.rowspan %></td>
+        <td><%= lesson_template_box.colspan %></td>
+        <td><%= link_to 'Show', lesson_template_box %></td>
+        <td><%= link_to 'Edit', edit_lesson_template_box_path(lesson_template_box) %></td>
+        <td><%= link_to 'Destroy', lesson_template_box, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lesson template box', new_lesson_template_box_path %>

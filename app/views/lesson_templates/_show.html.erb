@@ -1,0 +1,8 @@
+<% for r in 1..@lesson_template.rows %>
+	<div class="template_row" id="row_<%= r %>">
+	  <% for c in 1..@lesson_template.cols %>
+	    <div class="template_col" id="row_<%= r %>_col_<%= c %>" style="width: 
+		  <%= (800 / @lesson_template.cols) - 4 %>px;"></div>
+	  <% end %>
+	</div>
+<% end %>

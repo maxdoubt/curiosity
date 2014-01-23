@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @lesson_template.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @lesson_template.description %>
+</p>
+
+<p>
+  <strong>Rows:</strong>
+  <%= @lesson_template.rows %>
+</p>
+
+<p>
+  <strong>Cols:</strong>
+  <%= @lesson_template.cols %>
+</p>
+
+<%= link_to 'Edit', edit_lesson_template_path(@lesson_template) %> |
+<%= link_to 'Back', lesson_templates_path %>
+
+<%= render :partial => 'lesson_entrysets/index', :object => @lesson_entrysets %>
+
+<%= render :partial => 'show', :object => @lesson_template %>
