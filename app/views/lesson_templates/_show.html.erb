@@ -1,8 +1,40 @@
 <% for r in 1..@lesson_template.rows %>
 	<div class="template_row" id="row_<%= r %>">
 	  <% for c in 1..@lesson_template.cols %>
-	    <div class="template_col" id="row_<%= r %>_col_<%= c %>" style="width: 
+	    <div class="template_col droppable" id="row_<%= r %>_col_<%= c %>" style="width: 
 		  <%= (800 / @lesson_template.cols) - 4 %>px;"></div>
 	  <% end %>
 	</div>
 <% end %>
+
+<style>
+.ui-state-hover {
+	background-color: yellow;
+}
+
+.ui-state-highlight {
+	background-color: red;
+}
+
+.ui-state-out {
+	background-color: none;
+}
+</style>
+
+<script>
+$(function() {
+    $( ".droppable" ).droppable({
+      hoverClass: "ui-state-hover",
+	  out: function ( event, ui ) {
+		$( this )
+	  	  .addClass( "ui-state-out")
+	  },
+      drop: function( event, ui ) {
+        $( this )
+          .addClass( "ui-state-highlight" )
+          .find( "p" )
+            .html( "Dropped!" );
+      }
+    });
+});
+</script>

@@ -1,3 +1,9 @@
 <% @lesson_entrysets.each do |lesson_entryset| %>
-  <h<%= lesson_entryset.depth %>><%= lesson_entryset.name %></h<%= lesson_entryset.depth %>>
+  <h<%= lesson_entryset.depth %> class="draggable"><%= lesson_entryset.name %></h<%= lesson_entryset.depth %>>
 <% end %>
+
+<script>
+$(function() {
+  $( ".draggable" ).draggable();
+});
+</script>

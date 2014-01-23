@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<div>
 <p>
   <strong>Name:</strong>
   <%= @lesson_template.name %>
@@ -22,7 +23,12 @@
 
 <%= link_to 'Edit', edit_lesson_template_path(@lesson_template) %> |
 <%= link_to 'Back', lesson_templates_path %>
+</div>
 
-<%= render :partial => 'lesson_entrysets/index', :object => @lesson_entrysets %>
+<div style='width: 800px; display: inline-block;'>
+  <%= render :partial => 'show', :object => @lesson_template %>
+</div>
 
-<%= render :partial => 'show', :object => @lesson_template %>
+<div style='width: 200px; display: inline-block;'>
+  <%= render :partial => 'lesson_entrysets/index', :object => @lesson_entrysets %>
+</div>
