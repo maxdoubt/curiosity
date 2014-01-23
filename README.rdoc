@@ -1,16 +1,17 @@
 == Curiosity
 
-A learing management system that attempts to elegantly address curriculum management and knowledge sharing by using data models that will facilitate performance analysis and collaboration.
+A learing management system that attempts to elegantly address curriculum management and knowledge sharing by using data models that facilitate content analysis and collaboration
 
-== Get Started ==
+== Get Started
 
-* Git the Code
-* rake db:migrate
-* rake db:seed
+    git clone https://github.com/maxdoubt/curiosity
+    cd curiosity
+    bundle install
+    rake db:migrate
+    rake db:seed
+    rails server
 
-* Online Demo Coming Soon
-
-== Rails Recommendation == 
+== Rails Recommendation
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
