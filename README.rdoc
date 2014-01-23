@@ -1,9 +1,22 @@
-== README
+== Curiosity
+
+A learing management system that attempts to elegantly address curriculum management and knowledge sharing by using data models that will facilitate performance analysis and collaboration.
+
+== Get Started ==
+
+* Git the Code
+* rake db:migrate
+* rake db:seed
+
+* Online Demo Coming Soon
+
+== Rails Recommendation == 
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
 Things you may want to cover:
+
 
 * Ruby version
 
