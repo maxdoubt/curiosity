@@ -11,24 +11,10 @@
   <%= @lesson_template.description %>
 </p>
 
-<p>
-  <strong>Rows:</strong>
-  <%= @lesson_template.rows %>
-</p>
-
-<p>
-  <strong>Cols:</strong>
-  <%= @lesson_template.cols %>
-</p>
-
 <%= link_to 'Edit', edit_lesson_template_path(@lesson_template) %> |
 <%= link_to 'Back', lesson_templates_path %>
 </div>
 
-<div style='width: 800px; display: inline-block;'>
+<div style='width: 800px; display: inline-block; vertical-align: top;'>
   <%= render :partial => 'show', :object => @lesson_template %>
-</div>
-
-<div style='width: 200px; display: inline-block;'>
-  <%= render :partial => 'lesson_entrysets/index', :object => @lesson_entrysets %>
 </div>

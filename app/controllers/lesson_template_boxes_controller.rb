@@ -25,6 +25,10 @@ class LessonTemplateBoxesController < ApplicationController
   # POST /lesson_template_boxes.json
   def create
     @lesson_template_box = LessonTemplateBox.new(lesson_template_box_params)
+    @lesson_template_box.row = 1
+    @lesson_template_box.col = 1
+    @lesson_template_box.rowspan = 1
+    @lesson_template_box.colspan = 1
 
     respond_to do |format|
       if @lesson_template_box.save

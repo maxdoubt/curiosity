@@ -1,4 +1,4 @@
-<% for r in 1..@lesson_template.rows %>
+<!-- <% for r in 1..@lesson_template.rows %>
 	<div class="template_row" id="row_<%= r %>">
 	  <% for c in 1..@lesson_template.cols %>
 	    <div class="template_col droppable" id="row_<%= r %>_col_<%= c %>" style="width: 
@@ -8,33 +8,225 @@
 <% end %>
 
 <style>
-.ui-state-hover {
-	background-color: yellow;
-}
+	.ui-state-hover {
+		background-color: yellow;
+	}
 
-.ui-state-highlight {
-	background-color: red;
-}
-
-.ui-state-out {
-	background-color: none;
-}
+	.ui-state-highlight {
+		background-color: lightblue;
+	}
 </style>
 
 <script>
 $(function() {
     $( ".droppable" ).droppable({
       hoverClass: "ui-state-hover",
-	  out: function ( event, ui ) {
-		$( this )
-	  	  .addClass( "ui-state-out")
-	  },
-      drop: function( event, ui ) {
-        $( this )
-          .addClass( "ui-state-highlight" )
-          .find( "p" )
-            .html( "Dropped!" );
-      }
+		      drop: function( event, ui ) {
+				var dropped = ui.draggable;
+				var droppedOn = $(this);
+				$(dropped).resizable({
+			        //minHeight: 50,
+				});
+                //$(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);
+		        droppedOn.addClass( "ui-state-highlight" );
+		      },
+		 	  out: function ( event, ui ) {
+		        $( this )
+		 	  	  .removeClass("ui-state-highlight")
+		 	  }
     });
 });
+</script> -->
+
+<%= form_for(@lesson_template) do |f| %>
+  <div class='field'>
+    <%= f.label :rows %>
+    <%= f.number_field :rows %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :cols %>
+    <%= f.number_field :cols %>
+  </div>
+<% end %>
+
+<style>
+.entrysets {
+	border: 2px solid gray;
+	padding: 10px;
+	margin: 2px;
+	border-radius: 0px;
+	text-align: center;
+	background-color: lightgray;
+	height: 20px;
+	width: 200px;
+	text-align: center;
+	z-index: 20;
+}
+
+.ui-state-hover {
+	border: 3px solid red;
+	background-color: red;
+}
+</style>
+
+<div style='display: inline-block; border: 1px solid black; margin-right: 10px; position: absolute;'>
+  <% @lesson_entrysets.each do |lesson_entryset| %>
+    <h<%= lesson_entryset.depth %> class="entrysets" id="<%= lesson_entryset.id %>">
+	  <%= lesson_entryset.name %>
+    </h<%= lesson_entryset.depth %>>
+  <% end %>
+</div>
+
+<div id="grid_holder">
+  <div class="snap-box">snap box</div>
+  <div class="snap-box">snap box2</div>
+</div>
+
+<script>
+  $(".entrysets").draggable({
+	  helper: "clone"
+  })
+
+  function add_snap_box(dropped) {
+      var cell = document.createElement('div');
+          cell.className = 'snap-box';
+		  cell.id = 'test'
+      $("#grid_holder").prepend(cell);
+	  $("#test").draggable({
+		  grid: [grid_size,grid_size],
+		  refreshPositions: true,
+		  containment: "#grid_holder"
+	  }).resizable({
+		  grid: [grid_size,grid_size],
+		  containment: "#grid_holder"
+	    });
+  }
+
+
+  $("#grid_holder").droppable({
+	  accept: ".entrysets",
+      hoverClass: "ui-state-hover",
+      drop: function( event, ui ) {
+          var jsonPost = {
+			  lesson_template_box : {
+		        lesson_template_id : '<%= @lesson_template.id %>',
+		        lesson_entryset_id : $(ui.draggable).attr("id")
+				}          	
+          }
+
+		  $.ajax({
+			  url: '/lesson_template_boxes/',
+			  type: "POST",
+			  dataType: "json",
+			  contentType: "application/json",
+			  data: JSON.stringify(jsonPost),
+		  }).success(function(data){
+			  //$('body').append(data);
+			  alert(data.name);
+		  })	    
+	    }
+  })
 </script>
+
+<style>
+	  #grid_holder {
+		  width: <%= @lesson_template.cols * 50 %>px;
+		  height: <%= @lesson_template.rows * 50 %>px;
+		  border: 3px solid black;
+		  position: absolute;
+		  display: inline-block;
+		  left: 300px;
+		  z-index: 15;
+      }
+
+    .grid {
+		margin: 0px auto auto;
+        border: 1px solid red;
+        border-width: 0 1px 1px 0;
+        background-color: #CCC;
+      }
+
+      .grid div {
+        border: 1px solid #000;
+        border-width: 1px 0 0 1px;
+        float: left;
+      }
+
+	.snap-box {
+	    width: 50px;
+	    height: 50px;
+	    position: absolute;
+	    z-index: 10;
+	    cursor: pointer;
+    
+	    border: 1px solid #CCC;
+	    background-color: rgba(0,0,0,0.6);
+	    color: #FFF;
+	    text-align: center;
+		vertical-align: middle;
+		font-size: 8px;
+	}
+</style>
+
+<script>
+  var grid_size = 50;
+
+  function creategrid(size, rows, cols){
+
+      var standardW = Math.floor(cols),
+          standardH = Math.floor(rows);
+
+      var standard = document.createElement('div');
+          standard.className = 'grid';
+          standard.id = 'grid';
+          standard.style.width = (standardW * size) + 'px';
+          standard.style.height = (standardH * size) + 'px';
+
+        for (var i = 0; i < standardH; i++) {
+            for (var p = 0; p < standardW; p++) {
+              var cell = document.createElement('div');
+                  cell.style.height = (size - 1) + 'px';
+                  cell.style.width = (size - 1) + 'px';
+                  cell.style.position = 'relative'
+                  cell.style.zIndex= '2';
+        standard.appendChild(cell);
+            }
+        }
+
+      //document.body.appendChild(standard);
+      $("#grid_holder").append(standard);
+
+  }
+
+  creategrid(grid_size, <%= @lesson_template.rows %>, <%= @lesson_template.cols %>);
+
+  function redraw_grid() {
+	$("#grid").empty();  
+	$("#grid").remove();
+	creategrid(grid_size,$("#lesson_template_rows").val(),$("#lesson_template_cols").val());
+  }
+
+  // jQuery 
+  $( ".snap-box" ).draggable({
+	  grid: [grid_size,grid_size],
+	  refreshPositions: true,
+	  containment: "#grid_holder"
+    }).resizable({
+	  grid: [grid_size,grid_size],
+	  containment: "#grid_holder"
+    });
+
+  $( "#lesson_template_rows" ).change(function() {
+	  $("#grid_holder").height(grid_size * $(this).val());
+	  redraw_grid();
+	  //$("#grid").css("background-color", "red");
+  });
+
+  $( "#lesson_template_cols" ).change(function() {
+	  $("#grid_holder").width(grid_size * $(this).val());
+	  redraw_grid();
+  });
+</script>
+
+

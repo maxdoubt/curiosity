@@ -1,9 +1,17 @@
+<style>
+.draggable {
+	border: 2px solid gray;
+	padding: 10px;
+	margin: 2px;
+	border-radius: 0px;
+	text-align: center;
+	background-color: lightgray;
+	height: 20px;
+	width: 200px;
+	text-align: center;
+}
+</style>
+
 <% @lesson_entrysets.each do |lesson_entryset| %>
   <h<%= lesson_entryset.depth %> class="draggable"><%= lesson_entryset.name %></h<%= lesson_entryset.depth %>>
 <% end %>
-
-<script>
-$(function() {
-  $( ".draggable" ).draggable();
-});
-</script>
