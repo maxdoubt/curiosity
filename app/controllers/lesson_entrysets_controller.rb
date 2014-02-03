@@ -4,8 +4,7 @@ class LessonEntrysetsController < ApplicationController
   # GET /lesson_entrysets
   # GET /lesson_entrysets.json
   def index
-    @lesson_entryset = LessonEntryset.find_by_id(2)
-    @lesson_entrysets = @lesson_entryset.descendants
+    @lesson_entrysets = LessonEntryset.root.descendants
   end
 
   # GET /lesson_entrysets/1

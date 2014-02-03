@@ -11,6 +11,7 @@ class LessonTemplatesController < ApplicationController
   # GET /lesson_templates/1.json
   def show
     @lesson_entrysets = LessonEntryset.root.descendants
+    @lesson_template_boxes = @lesson_template.lesson_template_boxes
   end
 
   # GET /lesson_templates/new

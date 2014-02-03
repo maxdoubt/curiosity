@@ -50,6 +50,7 @@ $(function() {
   </div>
 <% end %>
 
+
 <style>
 .entrysets {
 	border: 2px solid gray;
@@ -79,58 +80,12 @@ $(function() {
 </div>
 
 <div id="grid_holder">
+	<% @lesson_template_boxes.each do |box| %>
+	  <div class='snap-box' id='<%= box.lesson_entryset.name %>' style='top: <%= (box.row - 1) * 50 %>px; left: <%= ((box.col - 1) * 50) %>px; width: <%= (box.colspan * 50)%>px; height: <%= (box.rowspan * 50)%>px;'>
+		  <%= box.lesson_entryset.name %>
+	  </div>
+	<% end %>
 </div>
-
-<script>
-  $(".entrysets").draggable({
-	  helper: "clone"
-  })
-
-  function add_snap_box(dropped) {
-      var cell = document.createElement('div');
-          cell.className = 'snap-box';
-		  cell.id = dropped;
-      $("#grid_holder").prepend(cell);
-      $("#" + dropped).html(dropped);
-	  $("#" + dropped).draggable({
-		  grid: [grid_size,grid_size],
-		  refreshPositions: true,
-		  containment: "#grid_holder",
-		  stop: function (event, ui) {
-			  alert("column: " + ((ui.position.left/grid_size) + 1) + " row: " + ((ui.position.top/grid_size) + 1) );
-		  }
-	  }).resizable({
-		  grid: [grid_size,grid_size],
-		  containment: "#grid_holder"
-	    });
-  }
-
-
-  $("#grid_holder").droppable({
-	  accept: ".entrysets",
-      hoverClass: "ui-state-hover",
-      drop: function( event, ui ) {
-          var jsonPost = {
-			  lesson_template_box : {
-		        lesson_template_id : '<%= @lesson_template.id %>',
-		        lesson_entryset_id : $(ui.draggable).attr("id")
-				}          	
-          }
-
-		  $.ajax({
-			  url: '/lesson_template_boxes/',
-			  type: "POST",
-			  dataType: "json",
-			  contentType: "application/json",
-			  data: JSON.stringify(jsonPost),
-		  }).success(function(data){
-			  //$('body').append(data);
-			  //alert(data.name);
-			  add_snap_box(data.name);
-		  })	    
-	    }
-  })
-</script>
 
 <style>
 	  #grid_holder {
@@ -210,15 +165,14 @@ $(function() {
 	creategrid(grid_size,$("#lesson_template_rows").val(),$("#lesson_template_cols").val());
   }
 
-  // jQuery 
-  $( ".snap-box" ).draggable({
-	  grid: [grid_size,grid_size],
-	  refreshPositions: true,
-	  containment: "#grid_holder"
-    }).resizable({
-	  grid: [grid_size,grid_size],
-	  containment: "#grid_holder"
-    });
+  // $( ".snap-box" ).draggable({
+  // 	  grid: [grid_size,grid_size],
+  // 	  refreshPositions: true,
+  // 	  containment: "#grid_holder"
+  //   }).resizable({
+  // 	  grid: [grid_size,grid_size],
+  // 	  containment: "#grid_holder"
+  //   });
 
   $( "#lesson_template_rows" ).change(function() {
 	  $("#grid_holder").height(grid_size * $(this).val());
@@ -230,6 +184,106 @@ $(function() {
 	  $("#grid_holder").width(grid_size * $(this).val());
 	  redraw_grid();
   });
+
+  //stuff ben is pasting
+
+  $(".entrysets").draggable({
+	  helper: "clone"
+  })
+
+  function add_snap_box(dropped,id,lesson_entryset_id) {
+      var cell = document.createElement('div');
+          cell.className = 'snap-box';
+		  cell.id = dropped;
+      $("#grid_holder").prepend(cell);
+      $("#" + dropped).html(dropped);
+  }
+
+
+
+  function make_draggable(dropped,id,lesson_entryset_id) {
+	  $("#" + dropped).draggable({
+		  grid: [grid_size,grid_size],
+		  refreshPositions: true,
+		  containment: "#grid_holder",
+		  stop: function (event, ui) {
+			  var jsonPost = {
+				  lesson_template_box : {
+					  lesson_template_id : '<%= @lesson_template. id %>',
+					  lesson_entryset_id : lesson_entryset_id,
+					  col : ((ui.position.left/grid_size) + 1),
+					  row : ((ui.position.top/grid_size) + 1)
+				  }
+			  }
+			  
+			  $.ajax({
+				  url: '/lesson_template_boxes/' + id,
+				  type: "PUT",
+				  dataType: "json",
+				  contentType: "application/json",
+				  data: JSON.stringify(jsonPost),
+			  }).success(function(data){
+			      //alert(" column: " + ((ui.position.left/grid_size) + 1) + " row: " + ((ui.position.top/grid_size) + 1));
+			  })
+		  }
+	  }).resizable({
+		  grid: [grid_size,grid_size],
+		  containment: "#grid_holder",
+		  stop: function (event, ui) {
+			  var jsonPost = {
+				  lesson_template_box : {
+					  lesson_template_id : '<%= @lesson_template. id %>',
+					  lesson_entryset_id : lesson_entryset_id,
+					  colspan : (ui.size.width/grid_size),
+					  rowspan : (ui.size.height/grid_size)
+				  }
+			  }
+			  
+			  $.ajax({
+				  url: '/lesson_template_boxes/' + id,
+				  type: "PUT",
+				  dataType: "json",
+				  contentType: "application/json",
+				  data: JSON.stringify(jsonPost),
+			  }).success(function(data){
+			      //alert(" colspan: " + (ui.size.width/grid_size) + " rowspan: " + (ui.size.height/grid_size));
+			  })
+		  }
+	    });
+  }
+
+
+  $("#grid_holder").droppable({
+	  accept: ".entrysets",
+      hoverClass: "ui-state-hover",
+      drop: function( event, ui ) {
+          var jsonPost = {
+			  lesson_template_box : {
+		        lesson_template_id : '<%= @lesson_template.id %>',
+		        lesson_entryset_id : $(ui.draggable).attr("id")
+				}          	
+          }
+
+		  $.ajax({
+			  url: '/lesson_template_boxes/',
+			  type: "POST",
+			  dataType: "json",
+			  contentType: "application/json",
+			  data: JSON.stringify(jsonPost),
+		  }).success(function(data){
+			  //$('body').append(data);
+			  //alert(data.name);
+			  add_snap_box(data.name,data.id,data.lesson_entryset_id);
+			  make_draggable(data.name,data.id,data.lesson_entryset_id);
+		  })	    
+	    }
+  })
+
+	<% @lesson_template_boxes.each do |box| %>
+	    make_draggable('<%= box.lesson_entryset.name %>',<%= box.id %>,<%= box.lesson_entryset_id %>);
+	<% end %>
+
+
 </script>
 
 
