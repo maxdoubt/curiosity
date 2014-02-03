@@ -79,8 +79,6 @@ $(function() {
 </div>
 
 <div id="grid_holder">
-  <div class="snap-box">snap box</div>
-  <div class="snap-box">snap box2</div>
 </div>
 
 <script>
@@ -91,12 +89,16 @@ $(function() {
   function add_snap_box(dropped) {
       var cell = document.createElement('div');
           cell.className = 'snap-box';
-		  cell.id = 'test'
+		  cell.id = dropped;
       $("#grid_holder").prepend(cell);
-	  $("#test").draggable({
+      $("#" + dropped).html(dropped);
+	  $("#" + dropped).draggable({
 		  grid: [grid_size,grid_size],
 		  refreshPositions: true,
-		  containment: "#grid_holder"
+		  containment: "#grid_holder",
+		  stop: function (event, ui) {
+			  alert("column: " + ((ui.position.left/grid_size) + 1) + " row: " + ((ui.position.top/grid_size) + 1) );
+		  }
 	  }).resizable({
 		  grid: [grid_size,grid_size],
 		  containment: "#grid_holder"
@@ -123,7 +125,8 @@ $(function() {
 			  data: JSON.stringify(jsonPost),
 		  }).success(function(data){
 			  //$('body').append(data);
-			  alert(data.name);
+			  //alert(data.name);
+			  add_snap_box(data.name);
 		  })	    
 	    }
   })
