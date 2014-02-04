@@ -24,11 +24,19 @@ class LessonTemplateBoxesController < ApplicationController
   # POST /lesson_template_boxes
   # POST /lesson_template_boxes.json
   def create
-    @lesson_template_box = LessonTemplateBox.new(lesson_template_box_params)
-    @lesson_template_box.row = 1
-    @lesson_template_box.col = 1
-    @lesson_template_box.rowspan = 1
-    @lesson_template_box.colspan = 1
+    @lesson_template_box = LessonTemplateBox.find(:first, :conditions => ['lesson_template_id = ? and lesson_entryset_id = ?', params[:lesson_template_box][:lesson_template_id],params[:lesson_template_box][:lesson_entryset_id]])
+
+
+    if @lesson_template_box == nil
+      @lesson_template_box = LessonTemplateBox.new(lesson_template_box_params)
+      @lesson_template_box.row = 1
+      @lesson_template_box.col = 1
+      @lesson_template_box.rowspan = 1
+      @lesson_template_box.colspan = 1
+    end
+
+    @lesson_template_box.active = true
+
 
     respond_to do |format|
       if @lesson_template_box.save
@@ -73,6 +81,6 @@ class LessonTemplateBoxesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_template_box_params
-      params.require(:lesson_template_box).permit(:lesson_template_id, :lesson_entryset_id, :row, :col, :rowspan, :colspan)
+      params.require(:lesson_template_box).permit(:lesson_template_id, :lesson_entryset_id, :row, :col, :rowspan, :colspan, :active)
     end
 end

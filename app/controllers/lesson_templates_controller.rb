@@ -1,5 +1,5 @@
 class LessonTemplatesController < ApplicationController
-  before_action :set_lesson_template, only: [:show, :edit, :update, :destroy]
+  before_action :set_lesson_template, only: [:show, :preview, :edit, :update, :destroy]
 
   # GET /lesson_templates
   # GET /lesson_templates.json
@@ -11,7 +11,11 @@ class LessonTemplatesController < ApplicationController
   # GET /lesson_templates/1.json
   def show
     @lesson_entrysets = LessonEntryset.root.descendants
-    @lesson_template_boxes = @lesson_template.lesson_template_boxes
+    @lesson_template_boxes = @lesson_template.lesson_template_boxes.find(:all, :conditions => ['active = ?', true])
+  end
+
+  def preview
+    
   end
 
   # GET /lesson_templates/new

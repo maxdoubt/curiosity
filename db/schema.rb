@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140123023410) do
     t.integer  "col"
     t.integer  "rowspan"
     t.integer  "colspan"
+    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

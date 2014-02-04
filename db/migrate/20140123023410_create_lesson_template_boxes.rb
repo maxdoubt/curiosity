@@ -7,6 +7,7 @@ class CreateLessonTemplateBoxes < ActiveRecord::Migration
       t.integer :col
       t.integer :rowspan
       t.integer :colspan
+      t.boolean :active
 
       t.timestamps
     end

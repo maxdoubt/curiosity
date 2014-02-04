@@ -83,6 +83,7 @@ $(function() {
 	<% @lesson_template_boxes.each do |box| %>
 	  <div class='snap-box' id='<%= box.lesson_entryset.name %>' style='top: <%= (box.row - 1) * 50 %>px; left: <%= ((box.col - 1) * 50) %>px; width: <%= (box.colspan * 50)%>px; height: <%= (box.rowspan * 50)%>px;'>
 		  <%= box.lesson_entryset.name %>
+		  <i class="fi-x" onclick="remove_snap_box('<%= box.lesson_entryset.name %>',<%= box.id %>)"></i>
 	  </div>
 	<% end %>
 </div>
@@ -176,13 +177,42 @@ $(function() {
 
   $( "#lesson_template_rows" ).change(function() {
 	  $("#grid_holder").height(grid_size * $(this).val());
-	  redraw_grid();
-	  //$("#grid").css("background-color", "red");
+
+	  var jsonPost = {
+		  lesson_template : {
+			  rows : $(this).val()
+		  }
+	  }
+
+	  $.ajax({
+		  url: '/lesson_templates/' + <%= @lesson_template.id %>,
+		  type: "PUT",
+		  dataType: "json",
+		  contentType: "application/json",
+		  data: JSON.stringify(jsonPost),
+	  }).success(function(data){
+		  redraw_grid();
+	  })
   });
 
   $( "#lesson_template_cols" ).change(function() {
 	  $("#grid_holder").width(grid_size * $(this).val());
-	  redraw_grid();
+
+	  var jsonPost = {
+		  lesson_template : {
+			  cols : $(this).val()
+		  }
+	  }
+
+	  $.ajax({
+		  url: '/lesson_templates/' + <%= @lesson_template.id %>,
+		  type: "PUT",
+		  dataType: "json",
+		  contentType: "application/json",
+		  data: JSON.stringify(jsonPost),
+	  }).success(function(data){
+		  redraw_grid();
+	  })
   });
 
   //stuff ben is pasting
@@ -192,14 +222,46 @@ $(function() {
   })
 
   function add_snap_box(dropped,id,lesson_entryset_id) {
+      var prev_snapbox = $("#" + dropped)
+	  if (prev_snapbox != null) {
+		  prev_snapbox.remove();
+	  }
+	  
       var cell = document.createElement('div');
           cell.className = 'snap-box';
 		  cell.id = dropped;
+
+	  var del = document.createElement('i');
+	      del.className = 'fi-x';
+		  del.onclick = function() {
+			  remove_snap_box(dropped,id);
+		  }
+
       $("#grid_holder").prepend(cell);
-      $("#" + dropped).html(dropped);
+      $("#" + dropped).html(dropped + ' ');
+	  $("#" + dropped).append(del);
   }
 
-
+  function remove_snap_box(snapbox,id) {
+	  var jsonPost = {
+		  lesson_template_box : {
+			  active : 0,
+			  col : 1,
+			  row : 1,
+			  colspan : 1,
+			  rowspan : 1
+		  }
+	  }
+	  $.ajax({
+		  url: '/lesson_template_boxes/' + id,
+		  type: "PUT",
+		  dataType: "json",
+		  contentType: "application/json",
+		  data: JSON.stringify(jsonPost),
+	  }).success(function(data){
+		  $("#" + snapbox).remove();
+	  })
+  }
 
   function make_draggable(dropped,id,lesson_entryset_id) {
 	  $("#" + dropped).draggable({
@@ -261,7 +323,7 @@ $(function() {
 			  lesson_template_box : {
 		        lesson_template_id : '<%= @lesson_template.id %>',
 		        lesson_entryset_id : $(ui.draggable).attr("id")
-				}          	
+			}          	
           }
 
 		  $.ajax({

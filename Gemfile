@@ -6,7 +6,7 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
-
+#group :assets do
   # Use SCSS for stylesheets
   gem 'sass-rails', '~> 4.0.0'
 
@@ -15,7 +15,8 @@ gem 'sqlite3'
 
   # Use CoffeeScript for .js.coffee assets and views
   gem 'coffee-rails', '~> 4.0.0'
-
+  gem 'foundation-icons-sass-rails'
+#end
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
