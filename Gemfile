@@ -15,7 +15,7 @@ gem 'sqlite3'
 
   # Use CoffeeScript for .js.coffee assets and views
   gem 'coffee-rails', '~> 4.0.0'
-  gem 'foundation-icons-sass-rails'
+  gem 'foundation-icons-sass-rails', '~> 3.0.0'
 #end
 
 
@@ -38,9 +38,10 @@ group :doc do
 end
 
 gem 'devise', '~> 3.2.1'
-gem 'devise_invitable'
+gem 'devise_invitable', '~> 1.3.2'
 gem 'seed_dump', '~> 2.0.0'
-gem 'awesome_nested_set'
+gem 'awesome_nested_set', '~> 2.1.6'
+gem 'nokogiri', '~> 1.6.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

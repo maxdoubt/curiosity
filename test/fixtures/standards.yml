@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  lang: MyText
+  ref_id: MyText
+  ref_uri: MyText
+  number: 1
+  description: MyText
+  statement_code: MyText
+  statement: MyText
+  learning_standard_document_ref_id: MyText
+  learning_standard_item_ref_id: MyText
+  relationship_type: MyText
+  standardkind_id: 1
+  parent_id: 1
+  lft: 1
+  rgt: 1
+  depth: 1
+  subject_id: 1
+  iniative: MyText
+  framework: MyText
+  set: MyText
+  grade: MyText
+  domain: MyText
+  domain_desciption: MyText
+  cluster: MyText
+  standard: MyText
+  component: MyText
+
+two:
+  lang: MyText
+  ref_id: MyText
+  ref_uri: MyText
+  number: 1
+  description: MyText
+  statement_code: MyText
+  statement: MyText
+  learning_standard_document_ref_id: MyText
+  learning_standard_item_ref_id: MyText
+  relationship_type: MyText
+  standardkind_id: 1
+  parent_id: 1
+  lft: 1
+  rgt: 1
+  depth: 1
+  subject_id: 1
+  iniative: MyText
+  framework: MyText
+  set: MyText
+  grade: MyText
+  domain: MyText
+  domain_desciption: MyText
+  cluster: MyText
+  standard: MyText
+  component: MyText

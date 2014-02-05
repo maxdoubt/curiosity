@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140123023410) do
+ActiveRecord::Schema.define(version: 20140205172249) do
+
+  create_table "gradelevels", force: true do |t|
+    t.text     "name"
+    t.text     "abbrev"
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "lesson_entrysets", force: true do |t|
     t.text     "name"
@@ -40,6 +48,48 @@ ActiveRecord::Schema.define(version: 20140123023410) do
     t.text     "description"
     t.integer  "rows"
     t.integer  "cols"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "standardkinds", force: true do |t|
+    t.text     "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "standards", force: true do |t|
+    t.text     "lang"
+    t.text     "ref_id"
+    t.text     "ref_uri"
+    t.integer  "number"
+    t.text     "description"
+    t.text     "statement_code"
+    t.text     "initiative"
+    t.text     "framework"
+    t.text     "set"
+    t.text     "grade"
+    t.text     "domain"
+    t.text     "domain_description"
+    t.text     "cluster"
+    t.text     "standard"
+    t.text     "component"
+    t.text     "statement"
+    t.text     "learning_standard_document_ref_id"
+    t.text     "learning_standard_item_ref_id"
+    t.text     "relationship_type"
+    t.integer  "standardkind_id"
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "depth"
+    t.integer  "subject_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subjects", force: true do |t|
+    t.text     "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

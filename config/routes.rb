@@ -1,4 +1,16 @@
 Curriositree::Application.routes.draw do
+  resources :standards do
+    collection do
+      get 'import_cc'
+    end
+  end
+
+  resources :standardkinds
+
+  resources :gradelevels
+
+  resources :subjects
+
   resources :lesson_template_boxes
 
   resources :lesson_templates do

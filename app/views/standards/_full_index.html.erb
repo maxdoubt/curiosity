@@ -1,0 +1,82 @@
+<h1>Listing standards</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lang</th>
+      <th>Ref</th>
+      <th>Ref uri</th>
+      <th>Number</th>
+      <th>Description</th>
+      <th>Statement code</th>
+
+      <th>Initiative</th>
+      <th>Framework</th>
+      <th>Set</th>
+      <th>Grade</th>
+      <th>Domain</th>
+      <th>Domain description</th>
+      <th>Cluster</th>
+      <th>Standard</th>
+      <th>Component</th>
+
+      <th>Statement</th>
+      <th>Learning standard document ref</th>
+      <th>Learning standard item ref</th>
+      <th>Relationship type</th>
+      <th>Standardkind</th>
+      <th>Parent</th>
+      <th>Lft</th>
+      <th>Rgt</th>
+      <th>Depth</th>
+      <th>Subject</th>
+
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @standards.each do |standard| %>
+      <tr>
+        <td><%= standard.lang %></td>
+        <td><%= standard.ref_id %></td>
+        <td><%= link_to standard.ref_uri, standard.ref_uri %></td>
+        <td><%= standard.number %></td>
+        <td><%= standard.description %></td>
+        <td><%= standard.statement_code %></td>
+
+        <td><%= standard.initiative %></td>
+        <td><%= standard.framework %></td>
+        <td><%= standard.set %></td>
+        <td><%= standard.grade %></td>
+        <td><%= standard.domain %></td>
+        <td><%= standard.domain_description %></td>
+        <td><%= standard.cluster %></td>
+        <td><%= standard.standard %></td>
+        <td><%= standard.component %></td>
+
+
+        <td><%= standard.statement %></td>
+        <td><%= standard.learning_standard_document_ref_id %></td>
+        <td><%= standard.learning_standard_item_ref_id %></td>
+        <td><%= standard.relationship_type %></td>
+        <td><%= standard.standardkind_id %></td>
+        <td><%= standard.parent_id %></td>
+        <td><%= standard.lft %></td>
+        <td><%= standard.rgt %></td>
+        <td><%= standard.depth %></td>
+        <td><%= standard.subject_id %></td>
+
+        <td><%= link_to 'Show', standard %></td>
+        <td><%= link_to 'Edit', edit_standard_path(standard) %></td>
+        <td><%= link_to 'Destroy', standard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Standard', new_standard_path %>

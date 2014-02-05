@@ -1,0 +1,27 @@
+<h1>Listing standardkinds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @standardkinds.each do |standardkind| %>
+      <tr>
+        <td><%= standardkind.name %></td>
+        <td><%= link_to 'Show', standardkind %></td>
+        <td><%= link_to 'Edit', edit_standardkind_path(standardkind) %></td>
+        <td><%= link_to 'Destroy', standardkind, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Standardkind', new_standardkind_path %>

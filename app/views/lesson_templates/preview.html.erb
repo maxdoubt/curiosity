@@ -1,0 +1,15 @@
+<% width = 800/@lesson_template.cols %>
+<%= width %>
+
+<div style='border: 1px solid red; width: 1200px; position: relative;'>
+<% for r in 0..@lesson_template.rows %>
+  <% for c in 0..@lesson_template.cols %>
+    <% @box = @lesson_template.lesson_template_boxes.find(:first, :conditions => ['row = ? and col = ?', r, c])%>
+    <% if @box != nil %>
+	  <div style='padding: 5px; position: absolute; border: 5px solid black; width: <%= width * @box.colspan - 30 %>px; height: <%= width * @box.rowspan - 30 %>px; top: <%= (@box.row - 1) * width %>px; left: <%= (@box.col - 1) * width %>px;'>
+		  <%= @box.lesson_entryset.name %>
+	  </div>
+	<% end %>
+  <% end %>
+<% end %>
+</div>

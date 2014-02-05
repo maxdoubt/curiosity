@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @gradelevel.name %>
+</p>
+
+<p>
+  <strong>Abbrev:</strong>
+  <%= @gradelevel.abbrev %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @gradelevel.number %>
+</p>
+
+<%= link_to 'Edit', edit_gradelevel_path(@gradelevel) %> |
+<%= link_to 'Back', gradelevels_path %>
