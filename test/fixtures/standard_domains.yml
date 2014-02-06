@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  subject_id: 1
+  standardkind_id: 1
+  name: MyText
+  abbrev: MyText
+
+two:
+  subject_id: 1
+  standardkind_id: 1
+  name: MyText
+  abbrev: MyText

@@ -28,7 +28,7 @@ class GradelevelsController < ApplicationController
 
     respond_to do |format|
       if @gradelevel.save
-        format.html { redirect_to @gradelevel, notice: 'Gradelevel was successfully created.' }
+        format.html { redirect_to gradelevels_path, notice: 'Gradelevel was successfully created.' }
         format.json { render action: 'show', status: :created, location: @gradelevel }
       else
         format.html { render action: 'new' }

@@ -5,6 +5,8 @@ class StandardsController < ApplicationController
   # GET /standards.json
   def index
     @standards = Standard.all
+    @gradelevels = Gradelevel.all(:conditions => ['number > -1'])
+    @standard_domains = StandardDomain.all
   end
 
   # GET /standards/1
@@ -73,28 +75,34 @@ class StandardsController < ApplicationController
       @standard.domain = split_code[2]
             
       # set domains
-      case @standard.domain
-      when "CCRA"
-        @standard.domain_description = "College and Career Readiness Anchors"
-      when "RL"
-        @standard.domain_description = "Reading Literature"
-      when "RI"
-        @standard.domain_description = "Reading Information Text"
-      when "RF"
-        @standard.domain_description = "Reading Foundational Skills"
-      when "W"
-        @standard.domain_description = "Writing"
-      when "SL"
-        @standard.domain_description = "Speaking & Listening"
-      when "L"
-        @standard.domain_description = "Language"
-      when "RH"
-        @standard.domain_description = "History / Social Studies"
-      when "RST"
-        @standard.domain_description = "Science & Technical Subjects"
-      when "WHST"
-        @standard.domain_description = "Writing (History / Social Studies, Science & Technical Subjects)"
+      @standard_domain = StandardDomain.find(:first, :conditions => ['abbrev = ?', @standard.domain])
+      if @standard_domain
+        @standard.standard_domain_id = @standard_domain.id
+        @standard.domain_description = @standard_domain.name
       end
+      
+      # case @standard.domain
+#       when "CCRA"
+#         @standard.domain_description = "Anchor Standards (College and Career Readiness)"
+#       when "RL"
+#         @standard.domain_description = "Reading: Literature"
+#       when "RI"
+#         @standard.domain_description = "Reading: Information Text"
+#       when "RF"
+#         @standard.domain_description = "Reading: Foundational Skills"
+#       when "W"
+#         @standard.domain_description = "Writing"
+#       when "SL"
+#         @standard.domain_description = "Speaking & Listening"
+#       when "L"
+#         @standard.domain_description = "Language"
+#       when "RH"
+#         @standard.domain_description = "History / Social Studies"
+#       when "RST"
+#         @standard.domain_description = "Science & Technical Subjects"
+#       when "WHST"
+#         @standard.domain_description = "Writing (History / Social Studies, Science & Technical Subjects)"
+#       end
       
       @standard.grade = split_code[3]
       @standard.standard = split_code[4]
@@ -103,16 +111,59 @@ class StandardsController < ApplicationController
       @standard.save  
     end
         
-    # match children to parents
+    # finishing sanitization
     @standards = Standard.find(:all, :conditions => ['standardkind_id = 1 and subject_id = 2'])
     @standards.each do |standard|
+
+      # matching to parents
       @parent = Standard.find(:first, :conditions => ['ref_id = ?', standard.learning_standard_item_ref_id])
       if @parent != nil
         standard.parent_id = @parent.id
+
+        # if has parent, fix component and standard field
+
+        if standard.standard != nil and standard.standard[-1,1] =~ /[a-z]/
+          standard.component = standard.standard[-1,1]
+          standard.standard = standard.standard[0..-2]
+        end
+
         standard.save
       end
-    end
 
+
+      # matching to gradelevels
+      if standard.grade != nil
+        @grades = standard.grade.split("-")
+        puts @grades.length
+        if @grades.length > 1
+          lower_grade = @grades[0].to_i
+          higher_grade = @grades[1].to_i
+          for i in lower_grade..higher_grade
+            @gradelevel = Gradelevel.find(:first, :conditions => ['number = ?', i])
+            standard.gradelevels << @gradelevel
+          end
+        else
+          case @grades[0]
+          when "K"
+            corrected_grade = 0
+          when "R"
+            corrected_grade = 12
+          when "W"
+            corrected_grade = 12
+          when "SL"
+            corrected_grade = 12
+          when "L"
+            corrected_grade = 12
+          else
+            corrected_grade = @grades[0].to_i
+          end
+          puts corrected_grade
+          @gradelevel = Gradelevel.find(:first, :conditions => ['number = ?', corrected_grade])
+          standard.gradelevels << @gradelevel
+        end
+      end
+    
+    end
 
     redirect_to standards_path    
   end

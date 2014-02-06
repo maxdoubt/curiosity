@@ -14,6 +14,7 @@
       <th>Framework</th>
       <th>Set</th>
       <th>Grade</th>
+	  <td>Gradelevels</th>
       <th>Domain</th>
       <th>Domain description</th>
       <th>Cluster</th>
@@ -51,6 +52,11 @@
         <td><%= standard.framework %></td>
         <td><%= standard.set %></td>
         <td><%= standard.grade %></td>
+		<td>
+			<% standard.gradelevels.each do |gradelevel| %>
+			  <%= gradelevel.abbrev %><br/>
+			<% end %>
+		</td>
         <td><%= standard.domain %></td>
         <td><%= standard.domain_description %></td>
         <td><%= standard.cluster %></td>

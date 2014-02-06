@@ -13,6 +13,7 @@ class CreateStandards < ActiveRecord::Migration
       t.text :grade
       t.text :domain
       t.text :domain_description
+      t.integer :standard_domain_id
       t.text :cluster
       t.text :standard
       t.text :component

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140205172249) do
+ActiveRecord::Schema.define(version: 20140206215854) do
 
   create_table "gradelevels", force: true do |t|
     t.text     "name"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 20140205172249) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "gradelevels_standards", id: false, force: true do |t|
+    t.integer "gradelevel_id"
+    t.integer "standard_id"
+  end
+
+  add_index "gradelevels_standards", ["gradelevel_id", "standard_id"], name: "index_gradelevels_standards_on_gradelevel_id_and_standard_id"
+  add_index "gradelevels_standards", ["standard_id"], name: "index_gradelevels_standards_on_standard_id"
 
   create_table "lesson_entrysets", force: true do |t|
     t.text     "name"
@@ -52,6 +60,15 @@ ActiveRecord::Schema.define(version: 20140205172249) do
     t.datetime "updated_at"
   end
 
+  create_table "standard_domains", force: true do |t|
+    t.integer  "subject_id"
+    t.integer  "standardkind_id"
+    t.text     "name"
+    t.text     "abbrev"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "standardkinds", force: true do |t|
     t.text     "name"
     t.datetime "created_at"
@@ -71,6 +88,7 @@ ActiveRecord::Schema.define(version: 20140205172249) do
     t.text     "grade"
     t.text     "domain"
     t.text     "domain_description"
+    t.integer  "standard_domain_id"
     t.text     "cluster"
     t.text     "standard"
     t.text     "component"

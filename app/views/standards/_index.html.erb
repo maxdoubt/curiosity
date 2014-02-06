@@ -1,6 +1,51 @@
-<% @standards.each do |standard| %>
-  <div>
-	<div><%= standard.statement_code %></div>
-	<div><%= standard.statement %></div>
-  </div>
-<% end %>
+<style>
+    .divTable
+    {
+        display: table;
+        width:auto;
+        background-color:#eee;
+        border:1px solid  #666666;
+        border-spacing:5px;/*cellspacing:poor IE support for  this*/
+       /* border-collapse:separate;*/
+    }
+
+    .divRow
+    {
+       display:table-row;
+       width:auto;
+
+    }
+
+    .divCell
+    {
+        float:left;/*fix for  buggy browsers*/
+        display:table-column;
+        width:200px;
+        background-color:#ccc;
+
+    }
+</style>
+
+
+<div class="divTable">
+       <div class="headRow">
+		   <div class="divCell">Domain / Gradelevel</div>
+		   <% @gradelevels.each do |gradelevel| %>
+             <div class="divCell"><%= gradelevel.abbrev %></div>
+		   <% end %>
+      </div>
+      <% @standard_domains.each do |standard_domain| %>
+		  <div class="divRow">
+	        <div class="divCell"><%= standard_domain.name %></div>
+		    <% @gradelevels.each do |gradelevel| %>
+	          <div class="divCell">
+				  <% gradelevel.standards.find(:all, :conditions => ['standard_domain_id = ?', standard_domain.id], :order => 'statement_code').each do |standard| %>
+                    <div>
+						<%= standard.statement %>
+				    </div>
+				  <% end %>			  
+			  </div>
+		    <% end %>
+	      </div>
+      <% end %>
+</div>

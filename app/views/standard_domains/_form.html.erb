@@ -1,0 +1,33 @@
+<%= form_for(@standard_domain) do |f| %>
+  <% if @standard_domain.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@standard_domain.errors.count, "error") %> prohibited this standard_domain from being saved:</h2>
+
+      <ul>
+      <% @standard_domain.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :subject_id %><br>
+    <%= f.collection_select :subject_id, Subject.all, :id, :name, { :include_blank => true } %>
+  </div>
+  <div class="field">
+    <%= f.label :standardkind_id %><br>
+    <%= f.collection_select :standardkind_id, Standardkind.all, :id, :name, { :include_blank => true } %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_area :name %>
+  </div>
+  <div class="field">
+    <%= f.label :abbrev %><br>
+    <%= f.text_area :abbrev %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,33 @@
+<h1>Listing Standard Domains</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Standardkind</th>
+      <th>Name</th>
+      <th>Abbrev</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @standard_domains.each do |standard_domain| %>
+      <tr>
+        <td><%= standard_domain.subject.name %></td>
+        <td><%= standard_domain.standardkind.name %></td>
+        <td><%= standard_domain.name %></td>
+        <td><%= standard_domain.abbrev %></td>
+        <td><%= link_to 'Show', standard_domain %></td>
+        <td><%= link_to 'Edit', edit_standard_domain_path(standard_domain) %></td>
+        <td><%= link_to 'Destroy', standard_domain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Standard domain', new_standard_domain_path %>

@@ -1,4 +1,6 @@
 Curriositree::Application.routes.draw do
+  resources :standard_domains
+
   resources :standards do
     collection do
       get 'import_cc'
