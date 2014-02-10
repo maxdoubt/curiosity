@@ -22,18 +22,18 @@ Gradelevel.create!([
 
 
 LessonEntryset.create!([
-  { :name => "Trunk", :parent_id => nil, :lft => 1, :rgt => 24, :depth => 0, :created_at => "2014-01-23 01:50:04", :updated_at => "2014-01-23 01:50:04" },
-  { :name => "Outcomes", :parent_id => 1, :lft => 2, :rgt => 13, :depth => 1, :created_at => "2014-01-23 01:50:21", :updated_at => "2014-01-23 01:56:08" },
-  { :name => "Evidence", :parent_id => 1, :lft => 14, :rgt => 19, :depth => 1, :created_at => "2014-01-23 01:50:54", :updated_at => "2014-01-23 01:56:14" },
-  { :name => "Plan", :parent_id => 1, :lft => 20, :rgt => 23, :depth => 1, :created_at => "2014-01-23 01:51:05", :updated_at => "2014-01-23 01:56:18" },
-  { :name => "Goals", :parent_id => 2, :lft => 3, :rgt => 4, :depth => 2, :created_at => "2014-01-23 01:51:23", :updated_at => "2014-01-23 01:55:57" },
-  { :name => "Understandings", :parent_id => 2, :lft => 5, :rgt => 6, :depth => 2, :created_at => "2014-01-23 01:51:41", :updated_at => "2014-01-23 01:55:42" },
-  { :name => "Questions", :parent_id => 2, :lft => 7, :rgt => 8, :depth => 2, :created_at => "2014-01-23 01:52:20", :updated_at => "2014-01-23 01:55:30" },
-  { :name => "Knowledge", :parent_id => 2, :lft => 9, :rgt => 10, :depth => 2, :created_at => "2014-01-23 02:00:05", :updated_at => "2014-01-23 02:00:05" },
-  { :name => "Skills", :parent_id => 2, :lft => 11, :rgt => 12, :depth => 2, :created_at => "2014-01-23 02:00:22", :updated_at => "2014-01-23 02:00:22" },
-  { :name => "Performance Task", :parent_id => 3, :lft => 15, :rgt => 16, :depth => 2, :created_at => "2014-01-23 02:01:37", :updated_at => "2014-01-23 02:01:37" },
-  { :name => "Other Evidence", :parent_id => 3, :lft => 17, :rgt => 18, :depth => 2, :created_at => "2014-01-23 02:11:40", :updated_at => "2014-01-23 02:11:40" },
-  { :name => "Hook", :parent_id => 4, :lft => 21, :rgt => 22, :depth => 2, :created_at => "2014-01-23 02:25:57", :updated_at => "2014-01-23 02:25:57" }
+  { :name => "Trunk", :parent_id => nil, :created_at => "2014-01-23 01:50:04", :updated_at => "2014-01-23 01:50:04" },
+  { :name => "Outcomes", :parent_id => 1, :created_at => "2014-01-23 01:50:21", :updated_at => "2014-01-23 01:56:08" },
+  { :name => "Evidence", :parent_id => 1, :created_at => "2014-01-23 01:50:54", :updated_at => "2014-01-23 01:56:14" },
+  { :name => "Plan", :parent_id => 1, :created_at => "2014-01-23 01:51:05", :updated_at => "2014-01-23 01:56:18" },
+  { :name => "Goals", :parent_id => 2, :created_at => "2014-01-23 01:51:23", :updated_at => "2014-01-23 01:55:57" },
+  { :name => "Understandings", :parent_id => 2, :created_at => "2014-01-23 01:51:41", :updated_at => "2014-01-23 01:55:42" },
+  { :name => "Questions", :parent_id => 2, :created_at => "2014-01-23 01:52:20", :updated_at => "2014-01-23 01:55:30" },
+  { :name => "Knowledge", :parent_id => 2, :created_at => "2014-01-23 02:00:05", :updated_at => "2014-01-23 02:00:05" },
+  { :name => "Skills", :parent_id => 2, :created_at => "2014-01-23 02:00:22", :updated_at => "2014-01-23 02:00:22" },
+  { :name => "Performance Task", :parent_id => 3, :created_at => "2014-01-23 02:01:37", :updated_at => "2014-01-23 02:01:37" },
+  { :name => "Other Evidence", :parent_id => 3, :created_at => "2014-01-23 02:11:40", :updated_at => "2014-01-23 02:11:40" },
+  { :name => "Hook", :parent_id => 4, :created_at => "2014-01-23 02:25:57", :updated_at => "2014-01-23 02:25:57" }
 ])
 
 
