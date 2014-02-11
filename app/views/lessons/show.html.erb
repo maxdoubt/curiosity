@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @lesson.user_id %>
+</p>
+
+<p>
+  <strong>Lesson template:</strong>
+  <%= @lesson.lesson_template_id %>
+</p>
+
+<p>
+  <strong>Begin date:</strong>
+  <%= @lesson.begin_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @lesson.end_date %>
+</p>
+
+<p>
+  <strong>Lesson state:</strong>
+  <%= @lesson.lesson_state_id %>
+</p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @lesson.parent_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @lesson.title %>
+</p>
+
+<%= link_to 'Edit', edit_lesson_path(@lesson) %> |
+<%= link_to 'Back', lessons_path %>

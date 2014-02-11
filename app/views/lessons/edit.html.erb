@@ -1,0 +1,62 @@
+<style>
+.field {
+	display: inline-block;
+}
+</style>
+
+<h1>Editing lesson</h1>
+
+<%= form_for(@lesson) do |f| %>
+  <% if @lesson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+      <ul>
+      <% @lesson.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :lesson_template_id %><br>
+    <%= f.collection_select :lesson_template_id, LessonTemplate.all, :id, :name, prompt: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :begin_date %><br>
+    <%= f.text_field :begin_date, {:class => 'datepicker'} %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_date %><br>
+    <%= f.text_field :end_date, {:class => 'datepicker'} %>
+  </div>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
+
+<script>
+  $(function () {
+	$(".datepicker").datepicker();
+  });
+</script>
+
+<div style='position: relative;'>
+  <% @lesson_template = @lesson.lesson_template %>
+  <%= render 'lesson_templates/show', :object => @lesson_template %>
+</div>
+
+<div style='position: absolute; left: 820px;'>
+  <% @standard_domains = StandardDomain.find(:all)%>
+  <%= render 'standards/tabbed_index' %>
+</div>

@@ -1,6 +1,7 @@
-<h1>Editing lesson_template</h1>
+<h1>Editing Lesson Template</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @lesson_template %> |
-<%= link_to 'Back', lesson_templates_path %>
+<div style='width: 800px; display: inline-block; vertical-align: top;'>
+  <%= render :partial => 'edit', :object => @lesson_template %>
+</div>

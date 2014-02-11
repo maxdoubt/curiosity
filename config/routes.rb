@@ -1,4 +1,6 @@
 Curriositree::Application.routes.draw do
+  resources :lessons
+
   resources :standard_domains
 
   resources :standards do
@@ -15,11 +17,7 @@ Curriositree::Application.routes.draw do
 
   resources :lesson_template_boxes
 
-  resources :lesson_templates do
-    member do
-      get 'preview'
-    end
-  end
+  resources :lesson_templates
 
   resources :lesson_entrysets
 

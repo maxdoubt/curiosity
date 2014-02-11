@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  lesson_template_id: 1
+  begin_date: 2014-02-11
+  end_date: 2014-02-11
+  lesson_state_id: 1
+  parent_id: 1
+  title: MyText
+
+two:
+  user_id: 1
+  lesson_template_id: 1
+  begin_date: 2014-02-11
+  end_date: 2014-02-11
+  lesson_state_id: 1
+  parent_id: 1
+  title: MyText

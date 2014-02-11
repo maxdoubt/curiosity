@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206215854) do
+ActiveRecord::Schema.define(version: 20140211193053) do
 
   create_table "gradelevels", force: true do |t|
     t.text     "name"
@@ -56,6 +56,18 @@ ActiveRecord::Schema.define(version: 20140206215854) do
     t.text     "description"
     t.integer  "rows"
     t.integer  "cols"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lessons", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "lesson_template_id"
+    t.date     "begin_date"
+    t.date     "end_date"
+    t.integer  "lesson_state_id"
+    t.integer  "parent_id"
+    t.text     "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
