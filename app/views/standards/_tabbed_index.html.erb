@@ -1,0 +1,73 @@
+<style>
+.ui-tabs .ui-tabs-nav {
+    text-align: center;
+}
+.ui-tabs .ui-tabs-nav li {
+    margin: 0em;
+}
+
+  #tabs {
+	width: 480px;
+	padding: 0px;
+  }
+  
+  #tabs ul {
+	text-align: center;
+  }
+  
+  #tabs ul li {
+	font-size: 10px;
+  }
+
+  .ui-tabs .ui-tabs-panel {
+	padding: 5px;
+  }
+  
+  .standard {
+	  font-size: 12px;
+	  line-height: 12px;
+	  padding: 5px;
+	  margin: 7px 0px 7px 0px;
+	  font-weight: normal;
+	  border: 1px solid black;
+	  border-radius: 5px;
+	  width: 450px;
+  }
+  
+  .ui-widget-content {
+	  margin: 0px;
+	  border: 1px solid red;
+	  padding: 0px;
+  }
+  
+  h3 {
+	  margin: 0px;
+  }
+</style>
+
+<div id='tabs'>
+  <ul>
+    <% @standard_domains.each do |standard_domain| %>
+      <li><a href="#standard_domain_<%= standard_domain.id %>"><%= standard_domain.abbrev %></a></li>
+    <% end %>
+  </ul>
+    <% @standard_domains.each do |standard_domain| %>
+	  <div id="standard_domain_<%= standard_domain.id %>" class='standard_domains'>
+		  <h3><%= standard_domain.name %></h3>
+		  <% @gradelevel = Gradelevel.find_by_id(7)%>
+		  <% @gradelevel.standards.find(:all, :conditions => ['standard_domain_id = ? and parent_id is null', standard_domain.id]).each do |standard| %>
+		    <div class='standard'>
+				<strong><%= standard.domain %>.<%= standard.grade %>.<%= standard.standard %></strong> 
+				<%= standard.statement.html_safe %>
+			</div>
+		  <% end %>
+	  </div>
+    <% end %>
+</div>
+
+<script>
+ $(function() {
+   $("#tabs" ).tabs();
+   $(".standard").draggable({ helper: "clone" });
+ });
+</script>

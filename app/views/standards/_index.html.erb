@@ -1,64 +1,46 @@
 <style>
-    .divTable
-    {
-        display: table;
-        width:auto;
-        background-color:#eee;
-        border: 1px solid  #666666;
-        border-spacing:5px;/*cellspacing:poor IE support for  this*/
-       /* border-collapse:separate;*/
+    table {
+        background-color: #eee;
+        border: 1px solid #666666;
     }
 
-    .divRow
-    {
-       display:table-row;
-       width:auto;
+    table tr {
     }
 
-    .divCell
-    {
-        float:left;/*fix for  buggy browsers*/
-        display:table-cell;
-        width:80px;
-        background-color:#ccc;
+    table tr td {
+        background-color: white;
 		border: 1px solid;
 		padding: 2px;
 		margin: 2px;
 		height: 100%;
 		font-size: 9px;
 		line-height: 9px;
-
     }
 </style>
 
 
-<div class="divTable">
-       <div class="headRow">
-		   <% @gradelevels.each do |gradelevel| %>
-             <div class="divCell" style="text-align: center;"><%= gradelevel.abbrev %></div>
-		   <% end %>
-      </div>
+<table>
       <% @standard_domains.each do |standard_domain| %>
-		  <div class="divRow">
-	        <div class="divCell" style="width: 100%; text-align: center; font-size: 18px;"><%= standard_domain.name %></div>
-		  </div>
+		  <tr>
+	        <td colspan="<%= @gradelevels.length %>" style="text-align: center; font-size: 18px; line-height: 18px; background-color: pink;"><%= standard_domain.name %></td>
+		  </tr>
           <% for i in 1..10 %>
-	          <div class="headRow">
+	          <tr>
 	   		     <% @gradelevels.each do |gradelevel| %>
-	                <div class="divCell"><%= gradelevel.abbrev %></div>
+	                <td style='background-color: grey; text-align: center;'><%= gradelevel.abbrev %></td>
 	   		     <% end %>
-	          </div>
-			  <div class="divRow">
+	          </tr>
+			  <tr>
 			    <% @gradelevels.each do |gradelevel| %>
-		          <div class="divCell" style="position: relative; height: auto;">
+		          <td style="text-align: center; border-radius: 10px;">
 					<% standard = gradelevel.standards.find(:first, :conditions => ['standard_domain_id = ? and standard = ?', standard_domain.id, i]) %>
 				    <% if standard %>
-					<%= standard.statement %>
-					<%= standard.statement_code %>
+					<div style='width: 90px;'><%= standard.statement %></div>
+					<div style="font-weight: bold; padding: 5px;"><%= standard.domain %>.<%= standard.grade %>.<%= standard.standard %></div>
 					<% end %>
-				  </div>
+				  </td>
 			    <% end %>
-		      </div>
+		      </tr>
 		  <% end %>
       <% end %>
-</div>
+</table>
