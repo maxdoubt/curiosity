@@ -43,7 +43,7 @@ class StandardsController < ApplicationController
   def import_cc
     require 'open-uri'
 
-    ela = Nokogiri::XML(open("http://www.corestandards.org/ela-literacy.xml"))
+    ela = Nokogiri::XML(open("./public/ela-literacy.xml"))
     
     @standards = ela.xpath("//LearningStandardItem")
 
@@ -180,6 +180,12 @@ class StandardsController < ApplicationController
         format.json { render json: @standard.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def full_index
+    @standards = Standard.all
+    @gradelevels = Gradelevel.all(:conditions => ['number > -1'])
+    @standard_domains = StandardDomain.all    
   end
 
   # DELETE /standards/1

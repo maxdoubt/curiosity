@@ -6,6 +6,7 @@ Curriositree::Application.routes.draw do
   resources :standards do
     collection do
       get 'import_cc'
+      get 'full_index'
     end
   end
 
