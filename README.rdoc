@@ -14,15 +14,14 @@ A learing management system that attempts to elegantly address curriculum manage
 == Functions / Controllers (& Actions to Checkout)
 
     http://localhost:3000/lesson_templates/1/edit - Setup a lesson template
-	http://localhost:3000/standards/import_cc - Import all ELA Common Core
-	http://localhost:3000/standards/full_index - Visualize Common Core Across all Gradelevels
-	http://localhost:3000/lessons/new - Create a Lesson, Pick a Template, Drag and Drop Standards
+    http://localhost:3000/standards/import_cc - Import all ELA Common Core
+    http://localhost:3000/standards/full_index - Visualize Common Core Across all Gradelevels
+    http://localhost:3000/lessons/new - Create a Lesson, Pick a Template, Drag and Drop Standards
 
 == Basic Features
 
 Lesson Template Management
 Common Core Import and Integration
-
 
 == Rails Recommendation
 
