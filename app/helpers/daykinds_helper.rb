@@ -1,0 +1,2 @@
+module DaykindsHelper
+end

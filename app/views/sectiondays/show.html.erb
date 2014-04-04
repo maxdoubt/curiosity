@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Daykind:</strong>
+  <%= @sectionday.daykind_id %>
+</p>
+
+<p>
+  <strong>Begin time:</strong>
+  <%= @sectionday.begin_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @sectionday.end_time %>
+</p>
+
+<%= link_to 'Edit', edit_sectionday_path(@sectionday) %> |
+<%= link_to 'Back', sectiondays_path %>

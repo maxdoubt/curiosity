@@ -1,0 +1,31 @@
+<h1>Listing sectiondays</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Daykind</th>
+      <th>Begin time</th>
+      <th>End time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sectiondays.each do |sectionday| %>
+      <tr>
+        <td><%= sectionday.daykind_id %></td>
+        <td><%= sectionday.begin_time %></td>
+        <td><%= sectionday.end_time %></td>
+        <td><%= link_to 'Show', sectionday %></td>
+        <td><%= link_to 'Edit', edit_sectionday_path(sectionday) %></td>
+        <td><%= link_to 'Destroy', sectionday, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sectionday', new_sectionday_path %>

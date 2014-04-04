@@ -1,0 +1,29 @@
+<%= form_for(@sectionday) do |f| %>
+  <% if @sectionday.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sectionday.errors.count, "error") %> prohibited this sectionday from being saved:</h2>
+
+      <ul>
+      <% @sectionday.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :daykind_id %><br>
+    <%= f.number_field :daykind_id %>
+  </div>
+  <div class="field">
+    <%= f.label :begin_time %><br>
+    <%= f.time_select :begin_time %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br>
+    <%= f.time_select :end_time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

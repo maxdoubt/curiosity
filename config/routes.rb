@@ -1,4 +1,22 @@
 Curriositree::Application.routes.draw do
+  resources :sectiondays
+
+  resources :daykinds
+
+  resources :days
+
+  resources :sections
+
+  resources :courses
+
+  resources :semesters
+
+  resources :schoolyears
+
+  resources :teachers
+
+  resources :schools
+
   resources :lessons
 
   resources :standard_domains

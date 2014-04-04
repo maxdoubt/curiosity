@@ -1,0 +1,31 @@
+<h1>Listing daykinds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>School</th>
+      <th>Semester</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @daykinds.each do |daykind| %>
+      <tr>
+        <td><%= daykind.name %></td>
+        <td><%= daykind.school_id %></td>
+        <td><%= daykind.semester_id %></td>
+        <td><%= link_to 'Show', daykind %></td>
+        <td><%= link_to 'Edit', edit_daykind_path(daykind) %></td>
+        <td><%= link_to 'Destroy', daykind, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Daykind', new_daykind_path %>

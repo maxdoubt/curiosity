@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @daykind.name %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= @daykind.school_id %>
+</p>
+
+<p>
+  <strong>Semester:</strong>
+  <%= @daykind.semester_id %>
+</p>
+
+<%= link_to 'Edit', edit_daykind_path(@daykind) %> |
+<%= link_to 'Back', daykinds_path %>
