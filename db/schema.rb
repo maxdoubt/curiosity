@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140211193053) do
+ActiveRecord::Schema.define(version: 20140828213844) do
+
+  create_table "courses", force: true do |t|
+    t.text     "name"
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "daykinds", force: true do |t|
+    t.text     "name"
+    t.integer  "school_id"
+    t.integer  "semester_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "days", force: true do |t|
+    t.text     "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "gradelevels", force: true do |t|
     t.text     "name"
@@ -31,6 +52,19 @@ ActiveRecord::Schema.define(version: 20140211193053) do
 
   create_table "lesson_entrysets", force: true do |t|
     t.text     "name"
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "depth"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lesson_items", force: true do |t|
+    t.text     "content"
+    t.integer  "lesson_id"
+    t.integer  "lesson_template_box_id"
+    t.integer  "user_id"
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
@@ -68,6 +102,46 @@ ActiveRecord::Schema.define(version: 20140211193053) do
     t.integer  "lesson_state_id"
     t.integer  "parent_id"
     t.text     "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schools", force: true do |t|
+    t.text     "name"
+    t.text     "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schoolyears", force: true do |t|
+    t.date     "begin_date"
+    t.date     "end_date"
+    t.text     "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sectiondays", force: true do |t|
+    t.integer  "daykind_id"
+    t.time     "begin_time"
+    t.time     "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sections", force: true do |t|
+    t.text     "name"
+    t.integer  "course_id"
+    t.integer  "semester_id"
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "semesters", force: true do |t|
+    t.text     "name"
+    t.date     "begin_date"
+    t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -120,6 +194,15 @@ ActiveRecord::Schema.define(version: 20140211193053) do
 
   create_table "subjects", force: true do |t|
     t.text     "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teachers", force: true do |t|
+    t.text     "firstname"
+    t.text     "lastname"
+    t.integer  "user_id"
+    t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

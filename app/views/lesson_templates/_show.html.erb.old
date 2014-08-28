@@ -1,0 +1,29 @@
+<% width = 800/@lesson_template.cols %>
+
+<div style='width: 800px; position: relative;'>
+<% for r in 0..@lesson_template.rows %>
+  <% for c in 0..@lesson_template.cols %>
+    <% @box = @lesson_template.lesson_template_boxes.find(:first, :conditions => ['row = ? and col = ?', r, c])%>
+    <% if @box != nil %>
+	  <div style='padding: 5px; position: absolute; border: 5px solid black; width: <%= width * @box.colspan - 30 %>px; height: <%= width * @box.rowspan - 30 %>px; top: <%= (@box.row - 1) * width %>px; left: <%= (@box.col - 1) * width %>px;'>
+		  <div style='border-bottom: 1px solid black;'>
+		    <%= @box.lesson_entryset.name %>
+		  </div>
+		  <div id="<%= @box.lesson_entryset.name %>" class="lesson_template_box" style='width: 100%; height: 90%;'>
+		  </div>
+	  </div>
+	<% end %>
+  <% end %>
+<% end %>
+</div>
+
+<script>
+  $(function () {
+	$(".lesson_template_box").droppable({
+		hoverClass: "ui-state-highlight",
+		drop: function (event, ui) {
+			alert("dropped");
+		}
+	})
+  });
+</script>

@@ -1,0 +1,41 @@
+<h1>Listing lesson_items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th>Lesson</th>
+      <th>Lesson template box</th>
+      <th>User</th>
+      <th>Parent</th>
+      <th>Lft</th>
+      <th>Rgt</th>
+      <th>Depth</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lesson_items.each do |lesson_item| %>
+      <tr>
+        <td><%= lesson_item.content %></td>
+        <td><%= lesson_item.lesson_id %></td>
+        <td><%= lesson_item.lesson_template_box_id %></td>
+        <td><%= lesson_item.user_id %></td>
+        <td><%= lesson_item.parent_id %></td>
+        <td><%= lesson_item.lft %></td>
+        <td><%= lesson_item.rgt %></td>
+        <td><%= lesson_item.depth %></td>
+        <td><%= link_to 'Show', lesson_item %></td>
+        <td><%= link_to 'Edit', edit_lesson_item_path(lesson_item) %></td>
+        <td><%= link_to 'Destroy', lesson_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lesson item', new_lesson_item_path %>

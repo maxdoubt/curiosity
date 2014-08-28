@@ -1,4 +1,6 @@
 Curriositree::Application.routes.draw do
+  resources :lesson_items
+
   resources :sectiondays
 
   resources :daykinds

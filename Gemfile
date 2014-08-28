@@ -43,6 +43,12 @@ gem 'seed_dump', '~> 2.0.0'
 gem 'awesome_nested_set', '~> 2.1.6'
 gem 'nokogiri', '~> 1.6.0'
 
+# Bootstrap
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem 'twitter-bootstrap-rails', :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => 'bootstrap3'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

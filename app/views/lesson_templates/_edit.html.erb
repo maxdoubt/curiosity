@@ -48,7 +48,6 @@ $(function() {
 	border-radius: 0px;
 	text-align: center;
 	background-color: lightgray;
-	height: 20px;
 	width: 200px;
 	text-align: center;
 	z-index: 20;
@@ -62,9 +61,9 @@ $(function() {
 
 <div style='display: inline-block; border: 1px solid black; margin-right: 10px; position: absolute;'>
   <% @lesson_entrysets.each do |lesson_entryset| %>
-    <h<%= lesson_entryset.depth %> class="entrysets" id="<%= lesson_entryset.id %>">
+    <div class="entrysets" id="<%= lesson_entryset.id %>">
 	  <%= lesson_entryset.name %>
-    </h<%= lesson_entryset.depth %>>
+    </div>
   <% end %>
 </div>
 
@@ -285,8 +284,8 @@ $(function() {
 				  lesson_template_box : {
 					  lesson_template_id : '<%= @lesson_template. id %>',
 					  lesson_entryset_id : lesson_entryset_id,
-					  colspan : (ui.size.width/grid_size),
-					  rowspan : (ui.size.height/grid_size)
+					  colspan : (ui.size.width/grid_size)+1,
+					  rowspan : (ui.size.height/grid_size)+1
 				  }
 			  }
 			  

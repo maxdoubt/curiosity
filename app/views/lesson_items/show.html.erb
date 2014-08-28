@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @lesson_item.content %>
+</p>
+
+<p>
+  <strong>Lesson:</strong>
+  <%= @lesson_item.lesson_id %>
+</p>
+
+<p>
+  <strong>Lesson template box:</strong>
+  <%= @lesson_item.lesson_template_box_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @lesson_item.user_id %>
+</p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @lesson_item.parent_id %>
+</p>
+
+<p>
+  <strong>Lft:</strong>
+  <%= @lesson_item.lft %>
+</p>
+
+<p>
+  <strong>Rgt:</strong>
+  <%= @lesson_item.rgt %>
+</p>
+
+<p>
+  <strong>Depth:</strong>
+  <%= @lesson_item.depth %>
+</p>
+
+<%= link_to 'Edit', edit_lesson_item_path(@lesson_item) %> |
+<%= link_to 'Back', lesson_items_path %>
