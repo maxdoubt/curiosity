@@ -25,11 +25,14 @@ class LessonItemsController < ApplicationController
   # POST /lesson_items.json
   def create
     @lesson_item = LessonItem.new(lesson_item_params)
+    @box = @lesson_item.lesson_template_box
+    @lesson = @lesson_item.lesson
 
     respond_to do |format|
       if @lesson_item.save
         format.html { redirect_to @lesson_item, notice: 'Lesson item was successfully created.' }
         format.json { render action: 'show', status: :created, location: @lesson_item }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @lesson_item.errors, status: :unprocessable_entity }

@@ -1,6 +1,9 @@
-<h1>Listing lessons</h1>
+<div class='page-header'><h1>Listing lessons</h1></div>
 
-<table>
+<p><%= link_to 'New Lesson', new_lesson_path, :class => 'btn btn-default' %></p>
+
+
+<table class='table table-bordered table-striped'>
   <thead>
     <tr>
       <th>User</th>
@@ -10,8 +13,6 @@
       <th>Lesson state</th>
       <th>Parent</th>
       <th>Title</th>
-      <th></th>
-      <th></th>
       <th></th>
     </tr>
   </thead>
@@ -26,14 +27,14 @@
         <td><%= lesson.lesson_state_id %></td>
         <td><%= lesson.parent_id %></td>
         <td><%= lesson.title %></td>
-        <td><%= link_to 'Show', lesson %></td>
-        <td><%= link_to 'Edit', edit_lesson_path(lesson) %></td>
-        <td><%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+		  <div class='btn-group'>
+		    <%= link_to 'Show', lesson, class: 'btn btn-default btn-xs' %>
+            <%= link_to 'Edit', edit_lesson_path(lesson), class: 'btn btn-default btn-xs' %>
+            <%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %>
+		  </div>
+	    </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Lesson', new_lesson_path %>

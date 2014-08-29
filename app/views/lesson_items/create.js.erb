@@ -1,0 +1,2 @@
+var content = "<%= escape_javascript(render(:partial => 'lesson_template_boxes/show')) %>";
+$('#lesson_template_box_<%= @box.id %>').html(content);
