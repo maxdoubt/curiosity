@@ -6,10 +6,12 @@
 
 <div class='page-header'>
   <h1>Editing Lesson: <%= @lesson.title %></h1>
+  <div class='btn btn-default glyphicon glyphicon-pencil' onclick="$('#lesson_form').toggle('fast');"></div>
 </div>
 
-
-<%= render 'form' %>
+<div id='lesson_form' class='well' style='display: none;'>
+  <%= render 'form' %>
+</div>
 
 <div style='position: relative;'>
   <% @lesson_template = @lesson.lesson_template %>

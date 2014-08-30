@@ -1,2 +1,5 @@
-var content = "<%= escape_javascript(render(:partial => 'lesson_template_boxes/show')) %>";
-$('#lesson_template_box_<%= @box.id %>').html(content);
+var content = "<%= escape_javascript(render(:partial => 'lesson_items/show')) %>";
+$('#lesson_items_box_<%= @box.id %>').append(content);
+$('#lesson_item_<%= @lesson_item.id %>').effect("highlight", {}, 3000)
+$('#lesson_item_form_<%= @box.id %>').toggle('fast');
+$('#lesson_item_content_<%= @box.id %>').val('');

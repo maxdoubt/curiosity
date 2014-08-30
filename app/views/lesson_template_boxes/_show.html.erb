@@ -1,17 +1,28 @@
 		  <div class='panel panel-default'>
 		    <div class='panel-heading'>
-		      <%= @box.lesson_entryset.name %>
-			  <div class='glyphicon glyphicon-plus-sign'></div>
-		    </div>
-		    <div id="<%= @box.lesson_entryset.name %>" class="panel-body lesson_template_box" style='width: 100%; height: 90%;'>
-              <% @lesson_items = @lesson.lesson_items.where(lesson_template_box_id: @box.id) %>
-			  <% @lesson_items.each do |lesson_item| %>
-			    <div class='alert alert-warning'>
-				  <%= lesson_item.content %>
-				</div>
-			  <% end %>
+		      <h3><%= @box.lesson_entryset.name %>
+			  
+			  <div class='btn btn-default glyphicon glyphicon-plus pull-right'  onclick="$('#lesson_item_form_<%= @box.id %>').toggle('fast');">
+			  </div>
+			  
+			  
+			  </h3>
 
-			  <% @lesson_item = LessonItem.new %>
-			  <%= render 'lesson_items/form' %>
+			  <% @lesson_item = LessonItem.new %>			  
+			  <div id='lesson_item_form_<%= @box.id %>' style='display: none;'>
+			    <%= render 'lesson_items/form' %>
+			  </div>  
+		    </div>
+			
+		    <div class="panel-body lesson_template_box" style='width: 100%; height: 90%;'>
+              <% @lesson_items = @lesson.lesson_items.where(lesson_template_box_id: @box.id) %>
+			  
+			  <ul id='lesson_items_box_<%= @box.id %>' class='connectedSortable'>
+			    <% @lesson_items.each do |lesson_item| %>
+                  <% @lesson_item = lesson_item %>
+                  <%= render 'lesson_items/show' %>
+			    <% end %>
+		      </ul>
+			  
 		    </div>
 	      </div>

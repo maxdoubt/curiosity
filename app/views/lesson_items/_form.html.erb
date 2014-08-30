@@ -1,3 +1,4 @@
+<p>
 <%= form_for(@lesson_item, remote: true) do |f| %>
   <% if @lesson_item.errors.any? %>
     <div id="error_explanation">
@@ -12,14 +13,14 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :content %>
-    <%= f.text_area :content, :class => 'form-control' %>
+    <%= f.text_area :content, class: 'form-control', id: "lesson_item_content_#{@box.id}" %>
   </div>
   
-  <%= f.hidden_field :lesson_template_box_id, :value => @box.id %>
-  <%= f.hidden_field :lesson_id, :value => @lesson.id %>
+  <%= f.hidden_field :lesson_template_box_id, value: @box.id %>
+  <%= f.hidden_field :lesson_id, value: @lesson.id %>
   
   <div class="actions">
-    <%= f.submit 'Add Content', :class => 'btn btn-default btn-xs' %>
+    <%= f.submit 'Add Content', class: 'btn btn-default btn-xs' %>
   </div>
 <% end %>
+</p>
